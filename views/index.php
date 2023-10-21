@@ -9,13 +9,12 @@ if(empty($_SESSION['active']))
   header('location: ./inicio.php');
 }
 ?>
-<body>
-       
   <?php 
+  include("../include/nav.php");
    include("../include/aside.php");
    include("../include/header.php");
   ?>
-
+<body>   
 <main id="main" class="main">
     <section class="section">
       <div class="row">

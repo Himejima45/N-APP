@@ -142,4 +142,4 @@
       </ul>
     </nav><!-- End Icons Navigation -->
 
-  </header
+  </header>
