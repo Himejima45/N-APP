@@ -1,0 +1,140 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Receta;
+use Illuminate\Database\Seeder;
+
+class RecetaSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $recetas = [
+            [
+                'nombre' => 'Yogur griego con cereales y frutos secos',
+                'descripcion' => ' El yogur griego, además de nutritivo, posee una textura cremosa muy agradable al paladar'
+            ],
+            [
+                'nombre' => 'Pan integral con cereales, tortilla y brotes germi',
+                'descripcion' => 'Te aportarán calorías llenas de proteínas y grasas no saturadas'
+            ],
+            [
+                'nombre' => 'Requesón con fruta',
+                'descripcion' => 'Un estupendo desayuno que te hará aumentar tu masa muscular'
+            ],
+            [
+                'nombre' => 'Batido de cambur y avena',
+                'descripcion' => 'Es una excelente alternativas para consumir en el desayuno'
+            ],
+            [
+                'nombre' => 'Tostadas de pan integral con aguacate y queso fres',
+                'descripcion' => 'Aportará a tu organismo calorías beneficiosas que te ayudarán a desarrollar tus músculos'
+            ],
+            [
+                'nombre' => 'Avena, kiwi y semillas de chia',
+                'descripcion' => 'Aporte calorico: 376,45 KCAL'
+            ],
+            [
+                'nombre' => 'Tortillas de espinaca con bicote integral',
+                'descripcion' => 'Aporte nutricional adecuado'
+            ],
+            [
+                'nombre' => 'Batido con cambur y fresa',
+                'descripcion' => 'Deliciosa receta para bajar de peso'
+            ],
+            [
+                'nombre' => 'Avena con yogurt y frutos rojos',
+                'descripcion' => 'Alto en fibras'
+            ],
+            [
+                'nombre' => 'Tostadas de aguacate y germinados',
+                'descripcion' => 'Rico en omega 3'
+            ],
+            [
+                'nombre' => 'Burrito de guacamole',
+                'descripcion' => 'Buena eleccion para nutrir'
+            ],
+            [
+                'nombre' => 'Pan proteico con pavo natural y aguacate',
+                'descripcion' => ' El pan de espelta, por sus beneficios, también es perfecto'
+            ],
+            [
+                'nombre' => 'Estofado de pollo',
+                'descripcion' => 'Estofado de pollo'
+            ],
+            [
+                'nombre' => 'Pasta cremosa con pollo cajún',
+                'descripcion' => 'Deliciosa receta proteica de pasta cremosa con pollo estilo cajún'
+            ],
+            [
+                'nombre' => 'Ensalada de pollo con cuscús',
+                'descripcion' => 'Esta ensalada templada es muy completa'
+            ],
+            [
+                'nombre' => 'Atún salteado con verduras',
+                'descripcion' => 'Este alimento contiene abundante omega 3'
+            ],
+            [
+                'nombre' => 'Fiambre de pavo casero',
+                'descripcion' => 'Sin duda, esta carne baja en grasas y calorías'
+            ],
+            [
+                'nombre' => 'Abanico de calabacines al parmesano',
+                'descripcion' => 'El calabacín es una verdura con grandes nutrientes'
+            ],
+            [
+                'nombre' => 'Alcachofas con apio y manzanas',
+                'descripcion' => 'Las alcachofas son una fuente de vitamina'
+            ],
+            [
+                'nombre' => 'Brocoli con vinagreta de hortalizas',
+                'descripcion' => 'Nutritivo en vitaminas'
+            ],
+            [
+                'nombre' => 'Ensalada de papaya y tofu',
+                'descripcion' => 'Las ensaladas frescas son la opción perfecta para una cena ligera'
+            ],
+            [
+                'nombre' => 'Tortitas rellenas',
+                'descripcion' => 'Receta de cena para ganar músculo'
+            ],
+            [
+                'nombre' => 'Pasta cremosa con pollo cajún',
+                'descripcion' => 'Deliciosa receta proteica de pasta cremosa con pollo estilo cajún'
+            ],
+            [
+                'nombre' => 'Crema de verduras y guisantes',
+                'descripcion' => 'Resultan saciantes y muy saludables'
+            ],
+            [
+                'nombre' => 'Gazpacho y carne de ave',
+                'descripcion' => 'La combinación es perfecta y la podremos digerir'
+            ],
+            [
+                'nombre' => 'Pescado y piña asada',
+                'descripcion' => 'El pescado es proteína animal baja en grasa'
+            ],
+            [
+                'nombre' => 'Aguacate relleno',
+                'descripcion' => 'Contine grasas naturales'
+            ],
+            [
+                'nombre' => 'Sándwich de pollo asado con ensalada',
+                'descripcion' => 'La combinación es perfecta'
+            ],
+            [
+                'nombre' => 'Salmón con verduritas',
+                'descripcion' => 'Nutritivo en vitaminas'
+            ],
+        ];
+
+        foreach ($recetas as $receta) {
+            Receta::create($receta);
+        }
+    }
+}
