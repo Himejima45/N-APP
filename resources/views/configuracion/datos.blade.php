@@ -11,200 +11,169 @@
 @endsection
 
 @section('content')
-    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-            <header>Nutri-Star</header>
-            <div class="progress-bar">
-                <div class="step">
-                    <p>
-                        Objetivo
-                    </p>
-                    <div class="bullet">
-                        <span>1</span>
+    <section>
+
+        <section class="section">
+
+            <!-- Left side columns -->
+            <div class="col-lg-10">
+                <div class="row">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <h5 class="card-title">Colocar datos fiscos</h5>
+
+                                <!-- General Form Elements -->
+                                <form method="POST"action="{{ route('guardar-datos') }}">
+                                    @csrf
+                                    <div class="row mb-3 justify-content-center ">
+                                        <div class="col-lg-8">
+                                            <input type="text" hidden="" value="{{ auth()->user()->id }}"
+                                                id="usuario_id" name="usuario_id"
+                                                class="form-control @error('nombre') is-invalid @enderror">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3 justify-content-center">
+                                        <label>¿Cual es tu objetivo?</label>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <div class="input-group mt-3">
+                                                    <select id="habitos" name="objetivo"
+                                                        class="form-control @error('tipos') is-invalid @enderror">
+                                                        <option value=""selected disabled>seleciona tus objetivo
+                                                        </option>
+                                                        <option value="Bajar de Peso">Bajar de Peso</option>
+                                                        <option value="Subir de Peso">Subir de Peso</option>
+                                                        <option value="Balancear mi nutrición">Balancear mi nutrición
+                                                        </option>
+                                                    </select>
+                                                    <div class="valid-feedback">listo</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center">
+                                        <label>Habitos Alimenticios:</label>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <div class="input-group mt-3">
+                                                    <select id="habitos" name="habitos"
+                                                        class="form-control @error('tipos') is-invalid @enderror">
+                                                        <option value=""selected disabled>seleciona tus habitos
+                                                        </option>
+                                                        <option value="No respeto horarios de comida">No respeto horarios de
+                                                            comida</option>
+                                                        <option value="Como dulce o alimentos azucardos con frecuencia">Como
+                                                            dulce o alimentos azucardos con frecuencia</option>
+                                                        <option value="Como comida chatarra , procesada o enlatada"> Como
+                                                            comida chatarra , procesada o enlatada</option>
+                                                        <option value="Consumo alimentos fritos"> Consumo alimentos fritos
+                                                        </option>
+
+                                                    </select>
+                                                    <div class="valid-feedback">listo</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center">
+                                        <label>Genero</label>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <div class="input-group mt-3">
+                                                    <select id="genero" name="genero"
+                                                        class="form-control @error('tipos') is-invalid @enderror">
+                                                        <option value="" selected disabled>Seleciona tu genero
+                                                        </option>
+                                                        <option value="0">Femenino</option>
+                                                        <option value="1">Masculino</option>
+                                                    </select>
+                                                    <div class="valid-feedback">listo</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center ">
+                                        <label for="inputText">Peso</label>
+                                        <div class="col-lg-8">
+                                            <input type="number" name="pesoi"
+                                                class="form-control @error('nombre') is-invalid @enderror">
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-3 justify-content-center ">
+                                        <label for="inputText">Altura</label>
+                                        <div class="col-lg-8">
+                                            <input type="number" name="altura"
+                                                class="form-control @error('nombre') is-invalid @enderror">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center">
+                                        <label for="inputText">IMC</label>
+                                        <div class="col-lg-8">
+                                            <input type="number" name="imc" class="form-control">
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center">
+                                        <label for="inputText">Discapacidad</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" name="discapacidad" class="form-control">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3 justify-content-center">
+                                        <label for="inputText">Alergia</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" name="alergia" class="form-control">
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center">
+                                        <label>Nacionalidad</label>
+                                        <div class="col-lg-8">
+                                            <div>
+                                                <div class="input-group mt-3">
+                                                    <select id="genero" name="nacionalidad"
+                                                        class="form-control @error('tipos') is-invalid @enderror">
+                                                        <option value="" selected disabled>Seleciona tu Nacionalidad
+                                                        </option>
+                                                        @foreach ($nacionalidades as $nacionalidad)
+                                                            <option value="{{ $nacionalidad->id }}">
+                                                                {{ $nacionalidad->pais }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div class="valid-feedback">listo</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3 justify-content-center ">
+                                        <label for="inputText">Edad</label>
+                                        <div class="col-lg-8">
+                                            <input type="date" name="edad"
+                                                class="form-control @error('nombre') is-invalid @enderror">
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-3 justify-content-center">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary w-50">Crear</button>
+                                        </div>
+                                    </div>
+                                </form><!-- End General Form Elements -->
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="check bi bi-check"></div>
-                </div>
-                <div class="step">
-                    <p>
-                        Habitos
-                    </p>
-                    <div class="bullet">
-                        <span>2</span>
-                    </div>
-                    <div class="check bi bi-check"></div>
-                </div>
-                <div class="step">
-                    <p>
-                        Cuerpo
-                    </p>
-                    <div class="bullet">
-                        <span>3</span>
-                    </div>
-                    <div class="check fas fa-check"></div>
-                </div>
-                <div class="step">
-                    <p>
-                        Fecha
-                    </p>
-                    <div class="bullet">
-                        <span>4</span>
-                    </div>
-                    <div class="check bi bi-check"></div>
                 </div>
             </div>
-            <div class="form-outer">
-                <form action="#">
-                    <div class="page slide-page">
-                        <div class="title">
-                            ¿Cual es tu objetivo?
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Bajar de Peso
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Subir de Peso
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Balancear mi nutrición
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Consultar con nutricionista
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Todas las anteriores
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <button class="firstNext next">Siguiente</button>
-                        </div>
-                    </div>
-                    <div class="page">
-                        <div class="title">
-                            Habitos Alimenticios:
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    No respeto horarios de comida
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Como dulce o alimentos azucardos con frecuencia
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Como comida chatarra , procesada o enlatada
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    Consumo alimentos fritos
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck1">
-                                <label class="form-check-label" for="gridCheck1">
-                                    No tengo habitos negativos que afecten mi salud
-                                </label>
-                            </div>
-                        </div>
-                        <div class="field btns">
-                            <button class="prev-1 prev">Regresar</button>
-                            <button class="next-1 next">Siguiente</button>
-                        </div>
-                    </div>
-                    <div class="page">
-                        <div class="title">
-                            Informacion corporal:
-                        </div>
-                        <div class="field">
-                            <div class="label">
-                                Genero
-                            </div>
-                            <select>
-                                <option>Masculino</option>
-                                <option>Femenino</option>
-                                <option>Otro..</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="field">
-                            <div class="label">
-                                Peso(kg)
-                            </div>
-                            <input type="number" style="height: 100%;
-                      width: 100%;">
-                        </div>
-                        <br>
-                        <div class="field">
-                            <div class="label">
-                                Altura(cm)
-                            </div>
-                            <input type="number" style="height: 100%;
-                      width: 100%;">
-                        </div>
-                        <br>
-                        <div class="field btns">
-                            <button class="prev-2 prev">Regresar</button>
-                            <button class="next-2 next">Siguiente</button>
-                        </div>
-                    </div>
-                    <div class="page">
-                        <div class="title">
-                            Fecha de Nacimiento:
-                        </div>
-                        <div class="field">
-
-                            <input type="date" style="height: 100%;
-                       width: 100%;">
-                        </div>
-                        <br>
-                        <div class="field btns">
-                            <button class="prev-3 prev">Regresar</button>
-                            <button class="submit">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-    </section>
-@endsection
+        </section>
+    @endsection

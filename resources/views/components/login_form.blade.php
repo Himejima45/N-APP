@@ -11,7 +11,7 @@
                             </a>
                         </div>
                         <div class="pt-2 pb-">
-                            <h5 class="card-title text-center pb-0 fs-4">Iniciar Sesión</h5>
+                            <h5 class="card-title text-center pb-0 fs-4 " style="color: #22A7EA">Iniciar Sesión</h5>
                             <p class="text-center small">Ingresa tu usuario y contraseña para entrar</p>
                             <div class="alert">
                                 <p style="color: black;"><?php echo isset($alert) ? $alert : ''; ?>

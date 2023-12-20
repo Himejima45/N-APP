@@ -21,7 +21,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Crear Plan Personalizado</h5>
+                            
 
                             <!-- General Form Elements -->
                             <form method="POST" action="{{ route('guardar-ejercicio') }}">

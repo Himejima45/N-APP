@@ -68,6 +68,13 @@ class PlanesController extends Controller
 
     public function nutricional_personalizado()
     {
+        $aumento_peso_calorias_hombre = 3400;
+        $aumento_peso_calorias_mujer = 2700;
+        $bajar_peso_calorias_hombre = 2500;
+        $bajar_peso_calorias_mujer = 1700;
+        $mantener_peso_calorias_hombre = 2900;
+        $mantener_peso_calorias_mujer = 2200;
+
         return view('forms.plan_nutricional');
     }
 

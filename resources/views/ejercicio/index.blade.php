@@ -1,13 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Receta nutricional')
+@section('title', 'Ejercicio')
+
+@php
+    $genero = [1 => 'Femenino', 2 => 'Masculino'];
+@endphp
 
 @section('content')
     <div class="pagetitle">
-        <h1>Crear Receta Nutricional</h1>
+        <h1>Crear Ejercicio</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item">Crear Receta</li>
+                <li class="breadcrumb-item">Crear Ejercicio</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -18,10 +22,9 @@
                 <div class="card text-white">
                     <img src="{{ asset('images/food/batidos_2.jpg') }}" class="card-img" alt="...">
                     <div class="card-img-overlay text-center">
-                        <h5 class="card-title text-white text-center">Crear Receta</h5>
-                        <p class="card-text">Un buen programa de entrenamiento físico diseñado por profesionales te
-                            permitirá mejorar la condición, la constitución y la naturaleza de tu cuerpo.</p>
-                        <a href="{{ route('crear-receta') }}" class="btn btn-primary rounded-pill">
+                        <h5 class="card-title text-white text-center">Crear Ejercicio</h5>
+                        <p class="card-text">Texto a cambiar.</p>
+                        <a href="{{ route('crear-ejercicio') }}" class="btn btn-primary rounded-pill">
                             <i class="bi bi-star"> </i>Empezar
                         </a>
                     </div>
@@ -40,19 +43,27 @@
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Comida</th>
-                                <th scope="col">Receta</th>
+                                <th scope="col">Género</th>
+                                <th scope="col">Parte del cuerpo</th>
+                                <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($planes as $plan)
+                            @foreach ($ejercicios as $ejercicio)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>{{ $plan->nombre }}</td>
-                                    <td>{{ $plan->tipo->nombre }}</td>
-                                    <td>{{ $plan->comida->nombre }}</td>
-                                    <td>{{ $plan->receta->nombre }}</td>
+                                    <td>{{ $ejercicio->id }}</td>
+                                    <td>{{ $ejercicio->nombre }}</td>
+                                    <td>{{ $genero[$ejercicio->genero] }}</td>
+                                    <td>{{ $ejercicio->cuerpo->nombre }}</td>
+                                    <td class="d-flex">
+                                        <a href="{{ route('editar-ejercicio', $ejercicio->id) }}"
+                                            class="btn btn-warning">Editar</a>
+                                        <form action="{{ route('borrar-ejercicio', $ejercicio->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Borrar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

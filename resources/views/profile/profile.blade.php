@@ -16,7 +16,7 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="{{ asset('images/users/profile_2.png') }}" alt="Profile" class="rounded-circle">
-                        <h2>Kevin Andrade</h2>
+                        <h2>est</h2>
                         <ul>
                             <li class="dropdown-item">Fecha Nacimiento: 15/2/89</li>
                             <li class="dropdown-item">Edad: 25 años</li>
@@ -35,6 +35,9 @@
             <div class="col-xl-8">
 
                 <div class="card">
+             
+                        
+                   
                     <div class="card-body pt-3">
                         <div class="tab-content pt-2">
 
@@ -47,8 +50,8 @@
                                 <h5 class="card-title">Detalles De Usuario</h5>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Nombre Completo</div>
-                                    <div class="col-lg-9 col-md-8">Kevin Andrade</div>
+                                    <div class="col-lg-3 col-md-4 label ">Objetivo</div>
+                                    <div class="col-lg-9 col-md-8"></div>
                                 </div>
 
                                 <div class="row">
@@ -74,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-
+                  
                 </div>
             </div>
     </section>

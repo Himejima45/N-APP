@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comida;
 use App\Models\Receta;
+use App\Models\RecetaAnterior;
+use App\Models\Tipo;
 use Illuminate\Database\Seeder;
 
 class RecetaSeeder extends Seeder
@@ -14,7 +17,41 @@ class RecetaSeeder extends Seeder
      */
     public function run()
     {
+        $ingredientes = [
+            [17, 9], [8, 5], [17, 10]
+        ];
+
         $recetas = [
+            [
+                'nombre' => 'Arroz con huevo',
+                'descripcion' => 'Una rica receta',
+                'edad' => 25,
+                'genero' => 1,
+            ],
+            [
+                'nombre' => 'Yogurt chocolatado',
+                'descripcion' => 'Una sabrosa mezcla láctea',
+                'edad' => 45,
+                'genero' => 0,
+            ],
+            [
+                'nombre' => 'Arroz con chorizo',
+                'descripcion' => 'Una rica receta',
+                'edad' => 20,
+                'genero' => 0,
+            ],
+        ];
+
+        foreach ($recetas as $i => $receta) {
+            $tipo = Tipo::inRandomOrder()->first();
+            $comida = Comida::inRandomOrder()->first();
+            $receta['tipo_id'] = $tipo->id;
+            $receta['comida_id'] = $comida->id;
+            $registro = Receta::create($receta);
+            $registro->alimentos()->sync($ingredientes[$i]);
+        }
+
+        $recetasAnterior = [
             [
                 'nombre' => 'Yogur griego con cereales y frutos secos',
                 'descripcion' => ' El yogur griego, además de nutritivo, posee una textura cremosa muy agradable al paladar'
@@ -133,8 +170,8 @@ class RecetaSeeder extends Seeder
             ],
         ];
 
-        foreach ($recetas as $receta) {
-            Receta::create($receta);
+        foreach ($recetasAnterior as $receta) {
+            RecetaAnterior::create($receta);
         }
     }
 }

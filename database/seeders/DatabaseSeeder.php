@@ -17,11 +17,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolSeeder::class,
             UsuarioSeeder::class,
-            RecetaSeeder::class,
-            ComidaSeeder::class,
             TipoSeeder::class,
             NutricionalSeeder::class,
+            ComidaSeeder::class,
+            RecetaSeeder::class,
             GrupoMuscularSeeder::class,
+            PlanesAlimenticiosSeeder::class,
+            PartesCuerpoSeeder::class,
+            NacionalidadSeeder::class
         ]);
     }
 }

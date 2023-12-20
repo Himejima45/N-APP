@@ -16,20 +16,20 @@ class TipoSeeder extends Seeder
     {
         $tipos = [
             [
-                'nombre' => 'aumento de peso'
+                'nombre' => 'Subir de peso'
             ],
             [
-                'nombre' => 'bajar de peso'
+                'nombre' => 'Bajar de peso'
             ],
             [
-                'nombre' => 'nutritivo'
+                'nombre' => 'Nutritivo'
             ],
-            [
-                'nombre' => 'vegetariano'
-            ],
-            [
-                'nombre' => 'vegano'
-            ],
+            // [
+            //     'nombre' => 'vegetariano'
+            // ],
+            // [
+            //     'nombre' => 'vegano'
+            // ],
         ];
 
         foreach ($tipos as $tipo) {

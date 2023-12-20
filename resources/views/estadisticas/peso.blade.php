@@ -1,126 +1,185 @@
 @extends('layouts.app')
 
-@section('title', 'Entrenamiento')
+@section('title', 'Editar d.físicos')
 
-@section('js')
-    <script src="{{ asset('/plugins/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('/plugins/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ asset('/plugins/echarts/echarts.min.js') }}"></script>
+@section('css')
+    <link href="css/reco.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css">
+    <link rel="stylesheet" href="https://code.highcharts.com/css/highcharts.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/2.2.0/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css ">
 @endsection
 
+
 @section('content')
-    <div class="pagetitle">
-        <h1>Peso</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">Progreso</li>
-            </ol>
-        </nav>
-    </div>
-
-    <section class="section">
+    <section class="">
         <div class="row">
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Peso(kg)</h5>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Progreso</li>
-                        </ol>
-                        <!-- Line Chart -->
-                        <div id="lineChart"></div>
 
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                new ApexCharts(document.querySelector("#lineChart"), {
-                                    series: [{
-                                        name: "kg",
-                                        data: [70, 73, 74, 78, 80, 82, 85, ]
-                                    }],
-                                    chart: {
-                                        height: 350,
-                                        type: 'line',
-                                        zoom: {
-                                            enabled: false
-                                        }
-                                    },
-                                    dataLabels: {
-                                        enabled: false
-                                    },
-                                    stroke: {
-                                        curve: 'straight'
-                                    },
-                                    grid: {
-                                        row: {
-                                            colors: ['#f3f3f3',
-                                                'transparent'
-                                            ], // takes an array which will be repeated on columns
-                                            opacity: 0.5
-                                        },
-                                    },
-                                    xaxis: {
-                                        categories: ['55 kg', '65 kg', '75 kg', '85 kg', '90 kg', '95 kg', '100 kg'],
-                                    }
-                                }).render();
-                            });
-                        </script>
-                        <!-- End Line Chart -->
+            <div class="pagetitle">
+                <h1>Logros y Metas</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">Progreso</li>
+                    </ol>
+                </nav>
+            </div><!-- End Page Title -->
+
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="demo-output" style="margin-bottom: 1em; " class="chart-display " ></div>
+
+                                <!-- Bar Chart -->
+
+                                <!-- End Bar Chart -->
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive ">
+                                    <table class="table-primary" id="example" >
+                                        <thead class="table-primary" >
+                                            <tr>
+
+
+                                                <th scope="col">Peso</th>
+                                                <th scope="col">Actualizacion</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($datos as $datos)
+                                                <tr>
+                                                    <td>{{ $datos->pesoi }}</td>
+                                                    <td>{{ $datos->created_at }}</td>
+                                                    <td><a href="{{ route('editar.d', $datos) }}"
+                                                            class="btn btn-primary active" role="button"
+                                                            aria-pressed="true">Editar</a></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    <!-- End Table with stripped rows -->
+
+
+                                    <!-- </div> -->
+                                </div>
+
+
+                                <!-- End Line Chart -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Calculadora IMC</h5>
+                                <div class="row">
+                                    <div class="from-group mb-2">
+                                        <label for="kg">Ingrese Peso (kg):</label>
+                                        <input class="form-control" type="number" step="any"id="kg">
+                                    </div>
+                                    <div class="from-group mb-2">
+                                        <label for="m">Ingrese Altura (cm):</label>
+                                        <input class="form-control" type="number" step="any" id="m">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-primary w-100"id="calc">Calcular</button>
+                                    </div>
+                                    <hr>
+
+                                    <div class="progress-stacked">
+                                        <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="25"
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                            <div class="progress-bar bg-info">Por Debajo</div>
+                                        </div>
+                                        <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="25"
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                            <div class="progress-bar bg-success">Peso Normal</div>
+                                        </div>
+                                        <div class="progress" role="progressbar" aria-label="Segment three"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                            <div class="progress-bar bg-warning">Obesidad</div>
+                                        </div>
+                                        <div class="progress" role="progressbar" aria-label="Segment four"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                                            <div class="progress-bar bg-danger">Obesidad Morbida</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Peso Ideal</h5>
-
-                        <!-- Bar Chart -->
-                        <canvas id="barChart" style="max-height: 400px;"></canvas>
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                new Chart(document.querySelector('#barChart'), {
-                                    type: 'bar',
-                                    data: {
-                                        labels: ['Obesidad Morvida', 'Obesidad Morvida', 'Obesidad Morvida', 'Sobre Peso',
-                                            'Saludable', 'Peso por debajo'
-                                        ],
-                                        datasets: [{
-                                            data: [80, 70, 60, 50, 40, 30, 20],
-                                            backgroundColor: [
-                                                'rgba(153, 102, 255, 0.2)',
-                                                'rgba(255, 99, 132, 0.2)',
-                                                'rgba(255, 159, 64, 0.2)',
-                                                'rgba(255, 205, 86, 0.2)',
-                                                'rgba(54, 162, 235, 0.2)',
-                                                'rgba(75, 192, 192, 0.2)',
-                                            ],
-                                            borderColor: [
-                                                'rgb(153, 102, 255)',
-                                                'rgb(255, 99, 132)',
-                                                'rgb(255, 159, 64)',
-                                                'rgb(255, 205, 86)',
-                                                'rgb(54, 162, 235)',
-                                                'rgb(75, 192, 192)',
-                                            ],
-                                            borderWidth: 1
-                                        }]
-                                    },
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                });
-                            });
-                        </script>
-                        <!-- End Bar CHart -->
-
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
-        </div>
+
     </section>
+
+
+@section('js')
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/searchpanes/2.2.0/js/dataTables.searchPanes.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+    <script>
+        const table = new DataTable('#example');
+
+
+        // Create chart
+        const chart = Highcharts.chart('demo-output', {
+            chart: {
+                type: 'pie',
+                styledMode: true
+            },
+            title: {
+                text: 'Bitacora de peso'
+            },
+            series: [{
+                data: chartData(table)
+            }]
+        });
+
+        // On each draw, update the data in the chart
+        table.on('draw', function() {
+            chart.series[0].setData(chartData(table));
+        });
+
+        function chartData(table) {
+            var counts = {};
+
+            // Count the number of entries for each position
+            table
+                .column(0, {
+                    search: 'applied'
+                })
+                .data()
+                .each(function(val) {
+                    if (counts[val]) {
+                        counts[val] += 1;
+                    } else {
+                        counts[val] = 1;
+                    }
+                });
+
+            return Object.entries(counts).map((e) => ({
+                name: e[0],
+                y: e[1]
+            }));
+        }
+    </script>
+@endsection
 @endsection
